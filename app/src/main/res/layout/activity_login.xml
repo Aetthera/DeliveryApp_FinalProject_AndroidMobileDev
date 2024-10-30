@@ -10,27 +10,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ready to start"
+        android:text="Choose your role"
         android:textSize="35sp"
         android:textColor="#000000" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="login or register to continue"
-        android:textSize="18dp"
-        android:textColor="#000000" />
+
 
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnDriver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Driver" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="log in" />
+        android:text="Client" />
 
 </LinearLayout>
