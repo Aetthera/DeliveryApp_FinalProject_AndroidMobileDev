@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register Now!"
+        android:text="Login as a client Now!"
         android:textSize="35sp"
         android:textColor="#000000" />
 
@@ -34,11 +34,12 @@
         android:minHeight="48dp"
         android:padding="12dp"/>
     <Button
-        android:id="@+id/btnRegister"
+        android:id="@+id/btnCheck"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Log in" />
 
 
 
 </LinearLayout>
+
