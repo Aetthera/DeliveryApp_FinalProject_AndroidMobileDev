@@ -34,7 +34,8 @@ public class DriverCheckLogin extends AppCompatActivity {
 
         editText1 =  findViewById(R.id.editTextUserName);
         editText2 =  findViewById(R.id.editTextPassword);
-       Button checkButton = findViewById(R.id.btnCheck);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
+        Button checkButton = findViewById(R.id.btnCheck);
         database = FirebaseDatabase.getInstance().getReference("users");
 
 

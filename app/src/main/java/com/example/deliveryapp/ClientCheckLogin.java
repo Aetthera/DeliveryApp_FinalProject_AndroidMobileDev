@@ -39,6 +39,7 @@ public class ClientCheckLogin extends AppCompatActivity {
 
         editText1 =  findViewById(R.id.editTextUserName);
         editText2 =  findViewById(R.id.editTextPassword);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"})
         Button checkButton = findViewById(R.id.btnCheck);
         database = FirebaseDatabase.getInstance().getReference("users");
 
