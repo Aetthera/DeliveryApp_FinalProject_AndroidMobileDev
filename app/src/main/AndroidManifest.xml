@@ -13,6 +13,14 @@
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
         <activity
+            android:name="com.example.deliveryapp.SearchActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DeliveryApp" />
+        <activity
+            android:name="com.example.deliveryapp.RestaurantDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DeliveryApp" />
+        <activity
             android:name="com.example.deliveryapp.SplashActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
