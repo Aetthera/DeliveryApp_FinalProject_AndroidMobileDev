@@ -13,13 +13,31 @@
         android:theme="@style/Theme.DeliveryApp_FinalProject_AndroidMobileDev"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".RewardsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".OrdersFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SearchFragment"
+            android:exported="false" />
+        <activity
+            android:name=".HomepageFragment"
+            android:exported="false" />
+        <activity
+            android:name=".UserActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
+            <!--  -->
         </activity>
     </application>
 
