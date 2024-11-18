@@ -14,7 +14,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "MAPS_API_KEY", "\"${project.properties['MAPS_API_KEY']}\""
+
+        // Kotlin-style fallback mechanism for the MAPS_API_KEY
+        val mapsApiKey = project.findProperty("MAPS_API_KEY") as String? ?: ""
+        buildConfigField("String", "MAPS_API_KEY", "\"$mapsApiKey\"")
     }
 
     buildTypes {
