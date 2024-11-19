@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,36 +14,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DeliveryApp"
         tools:targetApi="31">
+
         <activity
-            android:name="com.example.deliveryapp.SearchActivity"
+            android:name="com.example.deliveryappYijia.CartActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.RestaurantDetailActivity"
+            android:name="com.example.deliveryappYijia.MainActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.SplashActivity"
+            android:name="com.example.deliveryappYijia.RestaurantDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.DriverCheckLogin"
+            android:name="com.example.deliveryappYijia.SplashActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.ClientCheckLogin"
+            android:name="com.example.deliveryappYijia.DriverCheckLogin"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.LoginActivity"
+            android:name="com.example.deliveryappYijia.ClientCheckLogin"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.RegisterActivity"
+            android:name="com.example.deliveryappYijia.LoginActivity"
             android:exported="false"
             android:theme="@style/Theme.DeliveryApp" />
         <activity
-            android:name="com.example.deliveryapp.MainActivity"
+            android:name="com.example.deliveryappYijia.RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.DeliveryApp" />
+        <activity
+            android:name="com.example.deliveryappYijia.SearchActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

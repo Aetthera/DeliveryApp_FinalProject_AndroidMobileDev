@@ -6,30 +6,20 @@
     android:padding="16dp">
 
     <EditText
-    android:id="@+id/edit_searchBar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Search by resturant name, cuisine"
-    android:drawableLeft="@android:drawable/ic_menu_search"
-    android:padding="12dp"
-    android:background="@android:drawable/editbox_background_normal"
-    android:inputType="text" />
+        android:id="@+id/edit_searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search by restaurant name, cuisine"
+        android:drawableLeft="@android:drawable/ic_menu_search"
+        android:padding="12dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:inputType="text" />
 
     <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/recycle_choiceRecyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:paddingTop="8dp"
-    android:clipToPadding="false" />
-
-    <Button
-    android:id="@+id/btn_viewCart"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="View Cart"
-    android:backgroundTint="#B564BA"
-    android:textColor="#FFFFFF"
-   android:padding="12dp" />
-
-    </LinearLayout>
+        android:id="@+id/recycle_choiceRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:clipToPadding="false" />
+</LinearLayout>
