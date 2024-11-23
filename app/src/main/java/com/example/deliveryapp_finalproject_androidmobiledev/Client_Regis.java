@@ -89,7 +89,7 @@ public class Client_Regis extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(number)){
-                    Toast.makeText(Client_Regis.this, "Enter Telephone", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Client_Regis.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -118,6 +118,7 @@ public class Client_Regis extends AppCompatActivity {
                                     userInfo.put("UserLname",editTextLname.getText().toString());
                                     userInfo.put("UserPhone",editTextNumber.getText().toString());
                                     userInfo.put("UserEmail",editTextEmail.getText().toString());
+                                    userInfo.put("UserPassword", editTextPassword.getText().toString());
                                     userInfo.put("IsUser", 1);
 
                                     df.set(userInfo);

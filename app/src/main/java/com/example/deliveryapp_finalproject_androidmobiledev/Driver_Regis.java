@@ -78,6 +78,21 @@ public class Driver_Regis extends AppCompatActivity {
                 email = String.valueOf((editTextEmail).getText());
                 password = String.valueOf((editTextPassword).getText());
 
+                if(TextUtils.isEmpty(fname)){
+                    Toast.makeText(Driver_Regis.this, "Enter First Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(lname)){
+                    Toast.makeText(Driver_Regis.this, "Enter Last Name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(number)){
+                    Toast.makeText(Driver_Regis.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(Driver_Regis.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     return;
@@ -103,6 +118,7 @@ public class Driver_Regis extends AppCompatActivity {
                                     userInfo.put("UserLname",editTextLname.getText().toString());
                                     userInfo.put("UserPhone",editTextNumber.getText().toString());
                                     userInfo.put("UserEmail",editTextEmail.getText().toString());
+                                    userInfo.put("UserPassword", editTextPassword.getText().toString());
                                     userInfo.put("IsDriver", 1);
 
                                     df.set(userInfo);

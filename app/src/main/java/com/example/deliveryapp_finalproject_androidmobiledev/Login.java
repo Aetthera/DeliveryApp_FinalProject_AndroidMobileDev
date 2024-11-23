@@ -29,7 +29,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore mStore;
     ProgressBar progressBar;
-    TextView textView;
+    TextView textView, textView2;
 
 
 
@@ -43,11 +43,22 @@ public class Login extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         buttonLog = findViewById(R.id.btn_login);
         progressBar = findViewById(R.id.progressBar);
+
         textView = findViewById(R.id.registerNow);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Status_Screen.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        textView2 = findViewById(R.id.pass_reset);
+        textView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Forgot_Pass.class);
                 startActivity(intent);
                 finish();
             }

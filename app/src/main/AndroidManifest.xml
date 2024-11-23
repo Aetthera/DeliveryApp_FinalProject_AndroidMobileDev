@@ -29,6 +29,10 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
         <activity
+            android:name=".Forgot_Pass"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:exported="false" />
+        <activity
             android:name=".Client_Regis"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
