@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.deliveryapp_finalproject_androidmobiledev"
+    namespace = "com.example.spayment"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.deliveryapp_finalproject_androidmobiledev"
+        applicationId = "com.example.spayment"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -32,12 +32,24 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+
+    // Testing dependencies
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Retrofit dependencies
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+
+    // Stripe SDK for payment integration
+    implementation(libs.stripe)
+
+    // Gson for JSON parsing
+    implementation(libs.gson)
+
 }
