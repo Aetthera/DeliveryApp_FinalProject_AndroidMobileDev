@@ -37,6 +37,11 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -51,4 +56,5 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.3.2")
     implementation("com.google.android.gms:play-services-maps:18.1.0")
     implementation("com.google.firebase:firebase-firestore:24.7.1")
+    implementation("com.google.android.material:material:1.9.0")
 }
