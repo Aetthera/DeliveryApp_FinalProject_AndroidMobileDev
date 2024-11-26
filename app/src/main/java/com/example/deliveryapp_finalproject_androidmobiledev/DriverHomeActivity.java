@@ -5,8 +5,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -14,10 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class DriverHomeActivity extends FragmentActivity {
+public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private FirebaseFirestore db;
     private TextView offerText, deliveryTimeText;
+    private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +35,26 @@ public class DriverHomeActivity extends FragmentActivity {
         offerText = findViewById(R.id.offerText);
         deliveryTimeText = findViewById(R.id.deliveryTimeText);
 
+        // Load the map
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.mapFragment);
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this);
+        } else {
+            Toast.makeText(this, "Error loading map", Toast.LENGTH_SHORT).show();
+        }
+
         loadNewOffer();
+    }
+
+    @Override
+    public void onMapReady(@NonNull GoogleMap googleMap) {
+        this.googleMap = googleMap;
+        Toast.makeText(this, "Map is ready!", Toast.LENGTH_SHORT).show();
+
+        // Example: Set up the map with default settings
+        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.setMyLocationEnabled(true);
     }
 
     private void loadNewOffer() {
