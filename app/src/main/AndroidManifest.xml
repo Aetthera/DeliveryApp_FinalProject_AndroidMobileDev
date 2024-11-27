@@ -16,14 +16,37 @@
 
 
         <activity
+<<<<<<< HEAD
             android:name=".PaymentActivity"
             android:exported="true" >
 
+=======
+            android:name=".RewardsFragment"
+            android:exported="false" />
+        <activity
+            android:name=".OrdersFragment"
+            android:exported="false" />
+        <activity
+            android:name=".SearchFragment"
+            android:exported="false" />
+        <activity
+            android:name=".HomepageFragment"
+            android:exported="false" />
+        <activity
+            android:name=".UserActivity"
+            android:exported="true">
+>>>>>>> 38d278c46db1e7ce1d6b6e30b085b441e1215a96
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
+
+            <!--  -->
         </activity>
     </application>
 
