@@ -9,6 +9,9 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.content.Intent;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -45,6 +48,21 @@ public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCa
         }
 
         loadNewOffer();
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    // Already on this page
+                    return true;
+                case R.id.nav_pending:
+                    // Navigate to the PendingActivity
+                    startActivity(new Intent(this, PendingActivity.class));
+                    return true;
+            }
+            return false;
+        });
     }
 
     @Override
