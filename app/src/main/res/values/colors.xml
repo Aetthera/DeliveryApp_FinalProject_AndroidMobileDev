@@ -11,4 +11,8 @@
     <color name="jauneatre">#E1CC62</color>
     <color name="jaune_btn">#433904</color>
     <color name="salade_btn">#3A5115</color>
+    <color name="primary_background">#26292B</color>
+    <color name="secondary_background">#2E3239</color>
+    <color name="accent">#5F7ADB</color>
+    <color name="light_accent">#A2B2EE</color>
 </resources>

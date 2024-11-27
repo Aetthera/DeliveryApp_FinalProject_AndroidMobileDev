@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DeliveryApp_LogRegis_Andrei</string>
+    <string name="app_name">DeliveryApp_FinalProject_AndroidMobileDev</string>
     <string name="login">Login</string>
     <string name="register">User Registration</string>
     <string name="d_register">Driver Registration</string>
@@ -17,4 +17,5 @@
     <string name="fullname">First and Last Names</string>
     <string name="forgot">Forgot Password?</string>
     <string name="enter_email">Enter your Email</string>
+<!--    <string name="app_name">Spayment</string>-->
 </resources>

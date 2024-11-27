@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8sp"
+    android:background="@color/primary_background"
+    android:layout_margin="8dp"
+    android:elevation="4dp">
+
+    <!-- Restaurant Name -->
+    <TextView
+        android:id="@+id/restaurant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/accent"
+        android:paddingBottom="4dp"
+        android:text="Restaurant Name" />
+
+    <!-- Restaurant Description -->
+    <TextView
+        android:id="@+id/restaurant_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/accent"
+        android:paddingBottom="4dp"
+        android:text="Restaurant Description" />
+
+    <!-- Restaurant Rating -->
+    <TextView
+        android:id="@+id/restaurant_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/light_accent"
+        android:paddingBottom="4dp"
+        android:text="Rating: Restaurant Rating" />
+
+    <!-- Restaurant Address -->
+    <TextView
+        android:id="@+id/restaurant_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="@color/light_accent"
+        android:text="Address: Restaurant Address" />
+
+</LinearLayout>

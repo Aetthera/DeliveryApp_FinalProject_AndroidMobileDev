@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.spayment"
+    namespace = "com.example.tipsfinal"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.spayment"
+        applicationId = "com.example.tipsfinal"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -33,28 +33,13 @@ android {
 }
 
 dependencies {
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-<<<<<<< HEAD
-
-    // Testing dependencies
-=======
     implementation(libs.firebase.database)
->>>>>>> 38d278c46db1e7ce1d6b6e30b085b441e1215a96
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
-    // Retrofit dependencies
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-
-    // Stripe SDK for payment integration
-    implementation(libs.stripe)
-
-    // Gson for JSON parsing
-    implementation(libs.gson)
-
 }
