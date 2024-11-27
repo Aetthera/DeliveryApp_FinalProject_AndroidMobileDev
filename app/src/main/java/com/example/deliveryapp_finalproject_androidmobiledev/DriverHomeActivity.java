@@ -38,7 +38,6 @@ public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCa
         offerText = findViewById(R.id.offerText);
         deliveryTimeText = findViewById(R.id.deliveryTimeText);
 
-        // Load the map
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapFragment);
         if (mapFragment != null) {
@@ -54,10 +53,8 @@ public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCa
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_home:
-                    // Already on this page
                     return true;
                 case R.id.nav_pending:
-                    // Navigate to the PendingActivity
                     startActivity(new Intent(this, PendingActivity.class));
                     return true;
             }
@@ -70,7 +67,6 @@ public class DriverHomeActivity extends FragmentActivity implements OnMapReadyCa
         this.googleMap = googleMap;
         Toast.makeText(this, "Map is ready!", Toast.LENGTH_SHORT).show();
 
-        // Example: Set up the map with default settings
         googleMap.getUiSettings().setZoomControlsEnabled(true);
         googleMap.setMyLocationEnabled(true);
     }
