@@ -1,0 +1,121 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Your Tip"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Predefined Tip Percentages -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select a Tip Percentage:"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="8dp" />
+
+        <RadioGroup
+            android:id="@+id/tipOptionsGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#FFFFFF">
+
+            <RadioButton
+                android:id="@+id/tip15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15%"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/tip20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20%"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/tip35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="35%"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/tip50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <!-- Custom Tip Input -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Custom Tip Amount:"
+            android:textSize="16sp"
+            android:textColor="#555555"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/customTipEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter amount in dollars"
+            android:inputType="numberDecimal"
+            android:padding="12dp"
+            android:background="@drawable/edit_text_background"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Total with Tip Display -->
+        <TextView
+            android:id="@+id/totalAmountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total with Tip: $0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Confirm Tip Button -->
+        <Button
+            android:id="@+id/confirmTipButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Tip"
+            android:backgroundTint="#1E90FF"
+            android:textColor="#FFFFFF"
+            android:padding="12dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:elevation="2dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</ScrollView>

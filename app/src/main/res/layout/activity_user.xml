@@ -1,0 +1,81 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/primary_background"
+    >
+
+    <!-- FrameLayout to hold fragment views -->
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginTop="50sp"
+        />
+
+    <!-- Tab Buttons Layout at the Bottom -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_marginBottom="50sp"
+        android:background="@color/primary_background"
+        >
+
+        <Button
+            android:id="@+id/tab_homepage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Homepage"
+            android:textSize="15sp"
+            android:padding="0dp"
+            android:textColor="@color/light_accent"
+            android:backgroundTint="@color/primary_background"
+            />
+
+        <Button
+            android:id="@+id/tab_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Search"
+            android:textSize="15sp"
+            android:padding="0dp"
+            android:textColor="@color/light_accent"
+            android:backgroundTint="@color/primary_background"
+            />
+
+        <Button
+            android:id="@+id/tab_orders"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Orders"
+            android:textSize="15sp"
+            android:padding="0dp"
+            android:textColor="@color/light_accent"
+            android:backgroundTint="@color/primary_background"
+            />
+
+        <Button
+            android:id="@+id/tab_rewards"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Rewards"
+            android:textSize="15sp"
+            android:padding="0dp"
+            android:textColor="@color/light_accent"
+            android:backgroundTint="@color/primary_background"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
