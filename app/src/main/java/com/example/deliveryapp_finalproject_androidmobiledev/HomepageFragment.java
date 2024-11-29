@@ -4,20 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
-import android.widget.ListView;
-
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class HomepageFragment extends Fragment {
+
+    private List<Restaurant> restaurantList;
 
     @Nullable
     @Override
@@ -27,7 +23,7 @@ public class HomepageFragment extends Fragment {
         ListView listView = view.findViewById(R.id.list_view);
 
         // List of restaurants
-        List<Restaurant> restaurantList = new ArrayList<>();
+        restaurantList = new ArrayList<>();
         restaurantList.add(new Restaurant("Pasta Palace", "Authentic Italian pasta.", 4.5,
                 new Address("123", "Main St", "10001")));
         restaurantList.add(new Restaurant("Sushi Spot", "Fresh sushi and sashimi.", 4.8,

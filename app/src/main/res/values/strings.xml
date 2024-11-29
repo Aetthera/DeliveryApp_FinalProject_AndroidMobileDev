@@ -1,21 +1,5 @@
 <resources>
     <string name="app_name">DeliveryApp_FinalProject_AndroidMobileDev</string>
-    <string name="login">Login</string>
-    <string name="register">User Registration</string>
-    <string name="d_register">Driver Registration</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="click_to_login">Click to login</string>
-    <string name="click_to_register">Click to Register</string>
-    <string name="logout">Logout</string>
-    <string name="hello">Hello</string>
-    <string name="client_side">Client Side</string>
-    <string name="driver_side">Driver Side</string>
-    <string name="fname_field">First Name</string>
-    <string name="lname_field">Last Name</string>
-    <string name="telephone">Telephone</string>
-    <string name="fullname">First and Last Names</string>
-    <string name="forgot">Forgot Password?</string>
-    <string name="enter_email">Enter your Email</string>
-<!--    <string name="app_name">Spayment</string>-->
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
