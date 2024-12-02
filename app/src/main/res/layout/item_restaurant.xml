@@ -1,53 +1,38 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8sp"
-    android:background="@color/secondary_background"
     android:layout_margin="8dp"
-    android:elevation="4dp">
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    <!-- Restaurant Name -->
-    <TextView
-        android:id="@+id/restaurant_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/accent"
-        android:paddingBottom="4dp"
-        android:text="Restaurant Name" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <!-- Restaurant Description -->
-    <TextView
-        android:id="@+id/restaurant_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/accent"
-        android:paddingBottom="4dp"
-        android:text="Restaurant Description" />
+        <TextView
+            android:id="@+id/restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Restaurant Name"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <!-- Restaurant Rating -->
-    <TextView
-        android:id="@+id/restaurant_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/light_accent"
-        android:paddingBottom="4dp"
-        android:text="Rating: Restaurant Rating" />
+        <TextView
+            android:id="@+id/restaurant_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:layout_marginTop="4dp" />
 
-    <!-- Restaurant Address -->
-    <TextView
-        android:id="@+id/restaurant_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:textColor="@color/light_accent"
-        android:text="Address: Restaurant Address" />
-
-</LinearLayout>
+        <TextView
+            android:id="@+id/restaurant_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rating: 4.5"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

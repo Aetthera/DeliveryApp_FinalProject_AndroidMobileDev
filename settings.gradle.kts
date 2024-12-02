@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DeliveryApp_FinalProject_AndroidMobileDev"
+rootProject.name = "finalProject"
 include(":app")
+ 
