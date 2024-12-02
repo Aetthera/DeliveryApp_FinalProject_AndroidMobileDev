@@ -1,0 +1,138 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/checkout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checkout"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Cart Total -->
+        <TextView
+            android:id="@+id/cart_total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cart Total: $0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/green" />
+
+        <!-- Total Price (Including Tip) -->
+        <TextView
+            android:id="@+id/total_price_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: $0.00"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black" />
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/light_gray"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tip Options -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Tip Amount"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black" />
+
+        <RadioGroup
+            android:id="@+id/tip_options_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp">
+
+            <RadioButton
+                android:id="@+id/tip_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tip: 10%"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp" />
+
+            <RadioButton
+                android:id="@+id/tip_15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tip: 15%"
+                android:textColor="@color/black"
+                android:layout_marginBottom="4dp" />
+
+            <RadioButton
+                android:id="@+id/tip_30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tip: 30%"
+                android:textColor="@color/black" />
+        </RadioGroup>
+
+        <!-- Custom Tip Input -->
+        <EditText
+            android:id="@+id/custom_tip_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter Custom Tip Amount"
+            android:inputType="numberDecimal"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Delivery Address -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Delivery Address"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/address_input"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Enter Delivery Address"
+            android:inputType="textPostalAddress"
+            android:background="@drawable/edit_text_background"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Confirm Order Button -->
+        <Button
+            android:id="@+id/pay_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Order"
+            android:backgroundTint="@color/green"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+    </LinearLayout>
+</ScrollView>
