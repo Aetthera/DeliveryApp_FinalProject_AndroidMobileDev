@@ -18,6 +18,6 @@
         />
     <stroke
         android:width="3dp"
-        android:color="@color/salade_btn"
+        android:color="@color/jaune_btn"
         />
 </shape>

@@ -3,7 +3,6 @@ package com.example.finalproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -27,26 +26,32 @@ import java.util.Map;
 
 public class Driver_Regis extends AppCompatActivity {
 
-    // UI Components
-    private TextInputEditText editTextEmail, editTextPassword, editTextFname, editTextLname, editTextNumber;
-    private Button buttonReg;
-    private ProgressBar progressBar;
-    private TextView textViewLoginNow;
+    TextInputEditText editTextEmail, editTextPassword, editTextFname, editTextLname, editTextNumber;
+    Button buttonReg;
+    FirebaseAuth mAuth;
+    FirebaseFirestore mStore;
+    ProgressBar progressBar;
+    TextView textView;
 
-    // Firebase Instances
-    private FirebaseAuth mAuth;
-    private FirebaseFirestore mStore;
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null && currentUser.isEmailVerified()){
+            Intent intent = new Intent(getApplicationContext(), Driver_App.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver_regis);
-
-        // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
         mStore = FirebaseFirestore.getInstance();
 
-        // Bind UI Components
+        // Initialize UI elements
         editTextFname = findViewById(R.id.f_name);
         editTextLname = findViewById(R.id.l_name);
         editTextNumber = findViewById(R.id.pnumber);
@@ -54,121 +59,124 @@ public class Driver_Regis extends AppCompatActivity {
         editTextPassword = findViewById(R.id.password);
         buttonReg = findViewById(R.id.btn_register);
         progressBar = findViewById(R.id.progressBar);
-        textViewLoginNow = findViewById(R.id.loginNow);
+        textView = findViewById(R.id.loginNow);
 
-        // Set up "Login Now" Click Listener
-        textViewLoginNow.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), Login.class);
-            startActivity(intent);
-            finish();
+        // Redirect to login page
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
-        // Set up "Register" Button Click Listener
-        buttonReg.setOnClickListener(view -> registerDriver());
-    }
+        // Registration button click listener
+        buttonReg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                String fname = String.valueOf(editTextFname.getText()).trim();
+                String lname = String.valueOf(editTextLname.getText()).trim();
+                String number = String.valueOf(editTextNumber.getText()).trim();
+                String email = String.valueOf(editTextEmail.getText()).trim();
+                String password = String.valueOf(editTextPassword.getText()).trim();
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), Driver_App.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+                // Flag to track if all inputs are valid
+                boolean isValid = true;
 
-    private void registerDriver() {
-        // Show ProgressBar
-        progressBar.setVisibility(View.VISIBLE);
+                // Clear existing errors
+                editTextFname.setError(null);
+                editTextLname.setError(null);
+                editTextNumber.setError(null);
+                editTextEmail.setError(null);
+                editTextPassword.setError(null);
 
-        // Retrieve user inputs
-        String fname = editTextFname.getText().toString().trim();
-        String lname = editTextLname.getText().toString().trim();
-        String number = editTextNumber.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+                // Validate fields
+                if (TextUtils.isEmpty(fname)) {
+                    editTextFname.setError("First name is required");
+                    isValid = false;
+                }
 
-        // Validate user inputs
-        if (TextUtils.isEmpty(fname)) {
-            showError("Enter First Name");
-            return;
-        }
+                if (TextUtils.isEmpty(lname)) {
+                    editTextLname.setError("Last name is required");
+                    isValid = false;
+                }
 
-        if (TextUtils.isEmpty(lname)) {
-            showError("Enter Last Name");
-            return;
-        }
+                if (TextUtils.isEmpty(number)) {
+                    editTextNumber.setError("Phone number is required");
+                    isValid = false;
+                } else if (!number.matches("\\d{7,15}")) { // Basic phone number validation
+                    editTextNumber.setError("Enter a valid phone number (no spaces or dashes)");
+                    isValid = false;
+                }
 
-        if (TextUtils.isEmpty(number)) {
-            showError("Enter Phone Number");
-            return;
-        }
+                if (TextUtils.isEmpty(email)) {
+                    editTextEmail.setError("Email is required");
+                    isValid = false;
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) { // Validate email format
+                    editTextEmail.setError("Enter a valid email address");
+                    isValid = false;
+                }
 
-        if (TextUtils.isEmpty(email)) {
-            showError("Enter Email");
-            return;
-        }
+                if (TextUtils.isEmpty(password)) {
+                    editTextPassword.setError("Password is required");
+                    isValid = false;
+                } else if (password.length() < 6) { // Ensure password has at least 6 characters
+                    editTextPassword.setError("Password must be at least 6 characters");
+                    isValid = false;
+                }
 
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            showError("Enter a valid Email");
-            return;
-        }
+                if (!isValid) {
+                    progressBar.setVisibility(View.GONE); // Stop showing progress bar if input is invalid
+                    return;
+                }
 
-        if (TextUtils.isEmpty(password)) {
-            showError("Enter Password");
-            return;
-        }
+                // Create user with email and password
+                mAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                progressBar.setVisibility(View.GONE);
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = mAuth.getCurrentUser();
 
-        if (password.length() < 6) {
-            showError("Password must be at least 6 characters long");
-            return;
-        }
+                                    // Send email verification
+                                    user.sendEmailVerification()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(Driver_Regis.this, "Verification email sent.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        Toast.makeText(Driver_Regis.this, "Failed to send verification email.",
+                                                                Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
 
-        // Create user with Firebase Authentication
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressBar.setVisibility(View.GONE);
-                        if (task.isSuccessful()) {
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                storeDriverInfo(user.getUid(), fname, lname, number, email, password);
+                                    // Save user info in Firestore
+                                    DocumentReference df = mStore.collection("Users").document(user.getUid());
+                                    Map<String, Object> userInfo = new HashMap<>();
+                                    userInfo.put("UserFname", editTextFname.getText().toString());
+                                    userInfo.put("UserLname", editTextLname.getText().toString());
+                                    userInfo.put("UserPhone", editTextNumber.getText().toString());
+                                    userInfo.put("UserEmail", editTextEmail.getText().toString());
+                                    userInfo.put("IsDriver", 1);
+                                    df.set(userInfo);
+
+                                    // Redirect to login page
+                                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Toast.makeText(Driver_Regis.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        } else {
-                            Toast.makeText(Driver_Regis.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    private void storeDriverInfo(String userId, String fname, String lname, String number, String email, String password) {
-        DocumentReference documentReference = mStore.collection("Users").document(userId);
-        Map<String, Object> userInfo = new HashMap<>();
-        userInfo.put("UserFname", fname);
-        userInfo.put("UserLname", lname);
-        userInfo.put("UserPhone", number);
-        userInfo.put("UserEmail", email);
-        userInfo.put("UserPassword", password);
-        userInfo.put("IsDriver", 1);
-
-        documentReference.set(userInfo)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(Driver_Regis.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
-                        // Navigate to Login Activity
-                        Intent intent = new Intent(getApplicationContext(), Login.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        Toast.makeText(Driver_Regis.this, "Failed to save driver info", Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void showError(String message) {
-        Toast.makeText(Driver_Regis.this, message, Toast.LENGTH_SHORT).show();
-        progressBar.setVisibility(View.GONE);
+                        });
+            }
+        });
     }
 }

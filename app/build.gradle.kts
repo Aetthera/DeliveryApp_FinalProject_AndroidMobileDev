@@ -49,7 +49,9 @@ dependencies {
     implementation(libs.stripe)
     implementation(libs.firebase.firestore)
     implementation(libs.play.services.maps)
+    implementation(libs.ccp)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
 }

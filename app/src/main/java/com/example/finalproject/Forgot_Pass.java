@@ -1,9 +1,9 @@
 package com.example.finalproject;
 
-import android.os.Bundle;
-
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -13,20 +13,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.SignInMethodQueryResult;
 
 public class Forgot_Pass extends AppCompatActivity {
 
     private TextInputEditText emailField;
     private Button recoverButton;
-    private TextView recoverText;
     private ProgressBar progressBar;
+    private String email;
     TextView textView;
 
-    private FirebaseFirestore mStore;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +40,8 @@ public class Forgot_Pass extends AppCompatActivity {
 
         emailField = findViewById(R.id.email);
         recoverButton = findViewById(R.id.btn_recover);
-        recoverText = findViewById(R.id.recover_text);
         progressBar = findViewById(R.id.progressBar);
-        mStore = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         textView = findViewById(R.id.loginNow);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,36 +55,40 @@ public class Forgot_Pass extends AppCompatActivity {
         recoverButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = emailField.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE);
+                email = emailField.getText().toString().trim();
+
+                boolean isValid = true;
+                emailField.setError(null);
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(Forgot_Pass.this, "Please enter your email", Toast.LENGTH_SHORT).show();
+                    emailField.setError("Email is required");
+                    isValid = false;
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) { // Validate email format
+                    emailField.setError("Enter a valid email address");
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    progressBar.setVisibility(View.GONE); // Stop showing progress bar if input is invalid
                     return;
                 }
 
-                progressBar.setVisibility(View.VISIBLE);
+                mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(Forgot_Pass.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(Forgot_Pass.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
 
-                mStore.collection("Users")
-                        .whereEqualTo("UserEmail", email)
-                        .get()
-                        .addOnCompleteListener(task -> {
-                            progressBar.setVisibility(View.GONE);
-
-                            if (task.isSuccessful() && task.getResult() != null && !task.getResult().isEmpty()) {
-                                QuerySnapshot querySnapshot = task.getResult();
-                                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                                    String password = document.getString("UserPassword");
-                                    recoverText.setText(password != null ? "Password: " + password : "Password not found");
-                                }
-                            } else {
-                                recoverText.setText("Email not registered");
-                            }
-                        })
-                        .addOnFailureListener(e -> {
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(Forgot_Pass.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
             }
         });
+
     }
+
 }

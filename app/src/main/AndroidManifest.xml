@@ -19,9 +19,9 @@
         <activity
             android:name=".DriverHomepageActivity"
             android:exported="false" />
-        <activity
-            android:name=".DeliveryHomepageActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".DeliveryHomepageActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".CheckoutActivity"
             android:exported="true" />

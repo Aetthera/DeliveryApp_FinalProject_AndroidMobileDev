@@ -9,8 +9,17 @@
     android:gravity="center"
     android:layout_height="match_parent"
     android:padding="15dp"
-    android:background="@color/salade"
+    android:background="@drawable/background_sushi"
     tools:context=".Forgot_Pass">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners3"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15sp">
+
 
     <TextView
         android:layout_width="match_parent"
@@ -18,7 +27,7 @@
         android:layout_marginBottom="20dp"
         android:fontFamily="casual"
         android:gravity="center"
-        android:text="@string/forgot"
+        android:text="Forgot Password?"
         android:textSize="30sp"
         android:textStyle="bold" />
 
@@ -26,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:hint="@string/enter_email"
+        android:text="@string/enter_email"
         android:textStyle="bold" />
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -39,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:background="@drawable/custom_field"
-            android:fontFamily="sans-serif" />
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -62,16 +71,6 @@
         android:textColor="@color/white"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/recover_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:fontFamily="casual"
-        android:gravity="center"
-        android:hint="password here"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/loginNow"
@@ -82,5 +81,7 @@
         android:text="@string/click_to_login"
         android:textSize="20sp"
         android:textStyle="bold" />
+
+    </LinearLayout>
 
 </LinearLayout>

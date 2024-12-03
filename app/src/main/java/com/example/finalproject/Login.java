@@ -77,9 +77,7 @@ public class Login extends AppCompatActivity {
                 }
 
                 if(TextUtils.isEmpty(password)){
-                    editTextPassword.setError("khak bar saram");
-                    editTextPassword.requestFocus();
-                   // Toast.makeText(Login.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Enter Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
