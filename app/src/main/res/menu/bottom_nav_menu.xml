@@ -10,6 +10,6 @@
         android:title="Pending" />
     <item
         android:id="@+id/navigation_history"
-        android:icon="@drawable/"
+        android:icon="@drawable/history_24px"
         android:title="History" />
 </menu>

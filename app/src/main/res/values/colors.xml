@@ -15,4 +15,6 @@
     <color name="secondary_background">#2E3239</color>
     <color name="accent">#5F7ADB</color>
     <color name="light_accent">#A2B2EE</color>
+    <item android:color="@color/selected_color" android:state_checked="true" />
+    <item android:color="@color/unselected_color" android:state_checked="false" />
 </resources>
