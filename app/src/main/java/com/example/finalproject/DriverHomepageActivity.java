@@ -1,18 +1,24 @@
 package com.example.finalproject;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.firebase.database.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class DriverHomepageActivity extends AppCompatActivity {
 
     private ListView ordersListView;
-    private ArrayList<DeliveryOrder> ordersList;
     private DeliveryOrderAdapter adapter;
-    private DatabaseReference ordersRef;
+    private ArrayList<DeliveryOrder> ordersList;
+    private DatabaseReference transactionsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +30,19 @@ public class DriverHomepageActivity extends AppCompatActivity {
         adapter = new DeliveryOrderAdapter(this, ordersList);
         ordersListView.setAdapter(adapter);
 
-        ordersRef = FirebaseDatabase.getInstance().getReference("delivery_orders");
+        // Reference the "transactions" node in Firebase
+        transactionsRef = FirebaseDatabase.getInstance().getReference("transactions");
 
-        fetchOrders();
-
-        ordersListView.setOnItemClickListener((parent, view, position, id) -> {
-            DeliveryOrder selectedOrder = ordersList.get(position);
-            assignOrderToDriver(selectedOrder);
-        });
-    }
-
-    private void fetchOrders() {
-        ordersRef.addValueEventListener(new ValueEventListener() {
+        // Fetch data from Firebase
+        transactionsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 ordersList.clear();
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    DeliveryOrder order = data.getValue(DeliveryOrder.class);
+                for (DataSnapshot orderSnapshot : snapshot.getChildren()) {
+                    // Parse each order
+                    DeliveryOrder order = orderSnapshot.getValue(DeliveryOrder.class);
                     if (order != null && "Pending".equals(order.getStatus())) {
+                        order.setId(orderSnapshot.getKey()); // Store Firebase ID in the order object
                         ordersList.add(order);
                     }
                 }
@@ -50,27 +51,32 @@ public class DriverHomepageActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError error) {
-                Toast.makeText(DriverHomepageActivity.this, "Failed to load orders", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DriverHomepageActivity.this, "Failed to load orders: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Handle order selection
+        ordersListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            DeliveryOrder selectedOrder = ordersList.get(position);
+            if (selectedOrder != null) {
+                markOrderAsDelivered(selectedOrder);
             }
         });
     }
 
-    private void assignOrderToDriver(DeliveryOrder order) {
-        String driverId = "driver123"; // Replace with actual driver ID
+    private void markOrderAsDelivered(DeliveryOrder order) {
+        if (order.getId() == null) {
+            Toast.makeText(this, "Order ID is null. Cannot update status.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        order.setStatus("In Progress");
-        ordersRef.child(order.getId()).setValue(order)
+        DatabaseReference orderRef = transactionsRef.child(order.getId());
+        orderRef.child("status").setValue("Delivered")
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Order assigned successfully!", Toast.LENGTH_SHORT).show();
-                    updateDriverOrder(driverId, order.getId());
+                    Toast.makeText(this, "Order marked as delivered!", Toast.LENGTH_SHORT).show();
+                    ordersList.remove(order);
+                    adapter.notifyDataSetChanged();
                 })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Failed to assign order: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    private void updateDriverOrder(String driverId, String orderId) {
-        DatabaseReference driverRef = FirebaseDatabase.getInstance().getReference("drivers").child(driverId);
-        driverRef.child("currentOrderId").setValue(orderId);
+                .addOnFailureListener(e -> Toast.makeText(this, "Failed to update order: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }
