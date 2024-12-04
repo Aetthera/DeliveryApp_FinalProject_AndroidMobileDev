@@ -1,23 +1,13 @@
 package com.example.finalproject;
 
-import java.util.List;
-
 public class DeliveryOrder {
-    private String id;
-    private List<String> foods; // List of food names
+    private String id; // Firebase key
+    private String foods;
     private String deliveryAddress;
     private double totalAmount;
-    private String status; // "Pending", "In Progress", "Delivered"
+    private String status;
 
     public DeliveryOrder() {} // Default constructor for Firebase
-
-    public DeliveryOrder(String id, List<String> foods, String deliveryAddress, double totalAmount, String status) {
-        this.id = id;
-        this.foods = foods;
-        this.deliveryAddress = deliveryAddress;
-        this.totalAmount = totalAmount;
-        this.status = status;
-    }
 
     public String getId() {
         return id;
@@ -27,11 +17,11 @@ public class DeliveryOrder {
         this.id = id;
     }
 
-    public List<String> getFoods() {
+    public String getFoods() {
         return foods;
     }
 
-    public void setFoods(List<String> foods) {
+    public void setFoods(String foods) {
         this.foods = foods;
     }
 
